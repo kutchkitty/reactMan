@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Counter from './Counter.js'
 
 const style = {
@@ -7,18 +8,26 @@ const style = {
 
 class ControlPanel extends React.Component {
 
-  constructor(props) {
-    super(props);
+  static propTypes={
+        caption: PropTypes.string,
+        initValue: PropTypes.number,
+        onUpdate: PropTypes.func
+    }
 
-    this.onCounterUpdate = this.onCounterUpdate.bind(this);
-
-    this.initValues = [ 0, 10, 20];
-
-    const initSum = this.initValues.reduce((a, b) => a+b, 0);
-    this.state = {
-      sum: initSum
-    };
+  static defaultProps = {
+    initValue: 0,
+    onUpdate: f => f 
   }
+
+  constructor (props) {
+    super(props)
+    this.onCounterUpdate = this.onCounterUpdate.bind(this)
+    this.initValues = [ 0, 10, 20]
+    const initSum = this.initValues.reduce((a, b) => a+b , ) 
+    this.state= {
+        sum: initSum
+    }
+}
 
   onCounterUpdate(newValue, previousValue) {
     const valueChange = newValue - previousValue
